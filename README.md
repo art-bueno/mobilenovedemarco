@@ -10,8 +10,10 @@ Nele, caso o aluno já tenha uma conta no aplicativo, ele vai poder inserir seu 
 
 Caso o aluno não lembre de sua senha, há duas opções de recuperação:
 1. Botão de esqueci minha senha
+   
    1.1 Ao clicar o aluno será redirecionado a uma tela de recuperação de senha, criado e desenvolvido pela própria FIAP, onde receberá no seu e-mail os passos a serem seguidos
-2. Login com conta Microsoft
+3. Login com conta Microsoft
+   
    2.1 Ao clicar o aluno será redirecionado a uma tela de recuperação de senha com base em sua conta da Microsoft + FIAP, utilizando seu RM, ele poderá recuperar a senha
 
 Por fim, caso o aluno seja novo na FIAP e não tenha nenhuma conta, ele poderá acessar o botão "Criar conta" e fazer seu primeiro cadastro
