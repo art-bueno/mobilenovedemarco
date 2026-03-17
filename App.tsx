@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -16,27 +17,27 @@ import { morningSchedule, nightSchedule, ScheduleItem as ScheduleItemType } from
 import { ScheduleItem } from './components/scheduleItem';
 
 function MainContent() {
-    const insets = useSafeAreaInsets();
-    const [isNightPeriod, setIsNightPeriod] = useState(false);
-    const [search, setSearch] = useState('');
+  const insets = useSafeAreaInsets();
+  const [isNightPeriod, setIsNightPeriod] = useState(false);
+  const [search, setSearch] = useState('');
 
-    const schedules = isNightPeriod ? nightSchedule : morningSchedule;
+  const schedules = isNightPeriod ? nightSchedule : morningSchedule;
 
-    const filteredSchedules = schedules.filter((item) =>
-      item.subject.toLowerCase().includes(search.toLowerCase())
-    );
+  const filteredSchedules = schedules.filter((item) =>
+    item.subject.toLowerCase().includes(search.toLowerCase())
+  );
 
-    const renderItem = ({ item }: { item: ScheduleItemType }) => (
-      <ScheduleItem item={item} />
-    );
+  const renderItem = ({ item }: { item: ScheduleItemType }) => (
+    <ScheduleItem item={item} />
+  );
 
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       <View style={[styles.statusBarBackground, { height: insets.top }]} />
 
-      <ScrollView 
-        showsVerticalScrollIndicator={false} 
+      <ScrollView
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 20 }]}
       >
         <View style={styles.header}>
@@ -45,48 +46,58 @@ function MainContent() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.title}>Horário de Aulas</Text>
+          <Text style={styles.title}>Login</Text>
+          <Text style={styles.subtitle}>Bem vindo ao FIAPP</Text>
         </View>
 
         <TextInput
           style={styles.input}
-          placeholder="Pesquisar disciplina..."
+          placeholder="Digite seu email"
           placeholderTextColor="#999"
           value={search}
           onChangeText={setSearch}
         />
 
-        <View style={styles.switchContainer}>
-          <Text style={styles.switchLabel}>Manhã</Text>
-          <Switch
-            value={isNightPeriod}
-            onValueChange={setIsNightPeriod}
-            trackColor={{ false: '#ED145B', true: '#ED145B' }}
-            thumbColor={isNightPeriod ? '#363131f1' : '#fff'}
-          />
-          <Text style={styles.switchLabel}>Noite</Text>
-        </View>
-
-        <Text style={styles.currentPeriod}>
-          Período: {isNightPeriod ? 'Noite' : 'Manhã'}
-        </Text>
-
-        <FlatList
-          data={filteredSchedules}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          style={styles.list}
-          scrollEnabled={false}
-          ListEmptyComponent={
-            <Text style={styles.emptyMessage}>
-              Nenhuma aula cadastrada no período
-            </Text>
-          }
+        <TextInput
+          style={styles.input}
+          placeholder="Digite sua senha"
+          placeholderTextColor="#999"
+          value={search}
+          onChangeText={setSearch}
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => setSearch('')}>
-          <Text style={styles.buttonText}>Limpar pesquisa</Text>
+        <TouchableOpacity>
+          <Text style={styles.link}>Esqueci minha senha</Text>
         </TouchableOpacity>
+
+
+
+
+
+
+
+
+
+        <TouchableOpacity style={styles.button} onPress={() => setSearch('')}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.microsoftButton}>
+          <View style={styles.microsoftContent}>
+            
+            <Text style={styles.microsoftText}>Entrar com Microsoft</Text>
+            <Image
+              source={require('./assets/MsIcon.webp')}
+              style={styles.microsoftIcon}
+            />
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text style={styles.link}>Criar conta</Text>
+        </TouchableOpacity>
+
+
       </ScrollView>
     </View>
   );
@@ -126,6 +137,12 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     color: '#ED145B',
+  },
+  subtitle: {
+    fontSize: 20,
+    // fontWeight: 'bold',
+    color: '#ED145B',
+    paddingTop: 10,
   },
   input: {
     backgroundColor: '#1a1a1a',
@@ -176,5 +193,37 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  link: {
+    color: "#ff007f",
+    fontSize: 14,
+    marginTop: 10,
+    textAlign: "center",
+  },
+  microsoftButton: {
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 15,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+  },
+
+  microsoftText: {
+    color: "#000",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  microsoftContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  microsoftIcon: {
+    width: 80,
+    height: 80,
+    marginLeft: 15,
+  },
+
 });
 
